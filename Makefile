@@ -1,7 +1,7 @@
 PROGRAMS = linpack
 
 CC = cc
-CFLAGS=-Wall -Wextra -O3 -std=c11 -pedantic -march=native
+CFLAGS=-Wall -Wextra -O3 -std=c11 -pedantic
 LIBS=
 
 all: $(PROGRAMS)
