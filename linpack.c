@@ -64,18 +64,16 @@ static REAL second   (void);
 static void *mempool;
 
 
-int main(void)
+int main(int argc, char **argv)
 {
-    char    *arsize_input;
     int     arsize;
     long    arsize2d,nreps;
     size_t  malloc_arg,memreq;
 
-    arsize_input = getenv("LINPACK_ARRAY_SIZE");
-    if (arsize_input == NULL) {
-        arsize = 200;
+    if (argc == 2) {
+        arsize = atoi(argv[1]);
     } else {
-        arsize = atoi(arsize_input);
+        arsize = 200;
     }
 
         arsize/=2;
@@ -87,7 +85,7 @@ int main(void)
             }
         arsize2d = (long)arsize*(long)arsize;
         memreq=arsize2d*sizeof(REAL)+(long)arsize*sizeof(REAL)+(long)arsize*sizeof(int);
-        printf("Memory required:  %ldK.\n",(memreq+512L)>>10);
+        printf("Memory required:  %zdK.\n",(memreq+512L)>>10);
         malloc_arg=(size_t)memreq;
         if (malloc_arg!=memreq || (mempool=malloc(malloc_arg))==NULL)
             {
